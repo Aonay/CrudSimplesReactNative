@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'r
 import { selectUsuarios, insertUsuario, deleteUsuario, updateUsuario } from '../db/database';
 import { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Link, router } from 'expo-router';
 
 export default function Index() {
 
@@ -73,10 +74,14 @@ export default function Index() {
                   {modoEdicao ? 'Salvar Alterações' : 'Cadastrar'}
                </Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => router.push("/login")} style={styles.button}>
+               <Text style={styles.btnTexto}>Fazer Login</Text>
+            </TouchableOpacity>
          </View>
 
 
-         <Text style={styles.titleText}>Lista de Usuarios</Text>
+
          <FlatList
             data={usuarios}
             keyExtractor={item => item.id}
@@ -169,6 +174,10 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 16,
       fontWeight: '600',
+   },
+   link: {
+      color: 'green',
+      textAlign: 'center',
    },
    titleText: {
       fontSize: 24,
